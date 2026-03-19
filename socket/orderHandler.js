@@ -28,20 +28,35 @@ export const orderHandler = (io, socket) => {
       const ordersCollection = getCollection("orders");
       await ordersCollection.insertOne(order);
 
-      socket.join(`order-${orderId}`);
+      socket.join(`order_${orderId}`);
+
       socket.join("customers");
 
       io.to("admins").emit("newOrder", { order });
 
       callback({ success: true, order });
       console.log(`order created: ${orderId}`);
-
-
-
-
     } catch (error) {
       console.log(error);
       callback({ success: false, message: "Failed to place order..." });
     }
   });
 };
+
+// Track Order
+socket.on("trackOrder", async (data, callback) => {
+  try {
+    const ordersCollection = getCollection("orders");
+    const order = await ordersCollection.findOne({ orderId: data.orderId });
+
+    if (!order) {
+      return callback({ success: false, message: "Order not found" });
+    }
+
+    socket.join(`order_${data.orderId}`);
+    callback({ success: true, order });
+  } catch (error) {
+    console.error("❌ Track order error:", error);
+    callback({ success: false, message: "Failed to load order" });
+  }
+});
