@@ -125,7 +125,7 @@ export const orderHandler = (io, socket) => {
     });
 
     // ======================
-    // ADMIN EVENTS
+    // ADMIN EVENTS HERE
     // ======================
 
     // Admin Login
@@ -294,7 +294,7 @@ export const orderHandler = (io, socket) => {
         }
     });
 
-    // Set Estimated Time
+    // Set Estimated Time 
     socket.on('setEstimatedTime', async (data, callback) => {
         try {
             if (!socket.isAdmin) {
@@ -321,7 +321,7 @@ export const orderHandler = (io, socket) => {
         }
     });
 
-    // Get Live Stats
+    // Get Live Stats Of Orders
     socket.on('getLiveStats', async (callback) => {
         try {
             if (!socket.isAdmin) {
