@@ -128,7 +128,7 @@ export const orderHandler = (io, socket) => {
     // ADMIN EVENTS HERE
     // ======================
 
-    // Admin Login
+    // Admin Login 
     socket.on('adminLogin', (data, callback) => {
         try {
             if (data.password === process.env.ADMIN_PASSWORD) {
@@ -321,7 +321,7 @@ export const orderHandler = (io, socket) => {
         }
     });
 
-    // Get Live Stats Of Orders
+    // Get Live Stats
     socket.on('getLiveStats', async (callback) => {
         try {
             if (!socket.isAdmin) {

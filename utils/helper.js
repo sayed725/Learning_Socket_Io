@@ -67,7 +67,7 @@ export function calculateTotals(items) {
 }
 
 /**
- * Check if status transition is valid
+ * Check if status transition is valid or not
  */
 export function isValidStatusTransition(currentStatus, newStatus) {
     const validTransitions = {
